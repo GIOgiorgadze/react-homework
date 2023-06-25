@@ -1,5 +1,5 @@
-import  {Component} from "react"
-import  Makesome  from "./todo"
+import  {Component} from "react";
+import  Makesome  from "./todo";
 import Somedone from "./done";
 
 class Todo extends Component{
@@ -26,10 +26,19 @@ class Todo extends Component{
           new:""
       })
    }
+   shouldComponentUpdate(nextProps,nextState){
+    return !(
+        this.state.done === nextState.done &&
+        this.state.work === nextState.work 
+    );
+   }
     
    complateItem = (id) =>{
      const member = this.state.work.filter((user) => user.id !== id);
      const users =  this.state.work.filter((user) => user.id === id);
+     for(let i = 0;i<member.length;i++){
+        member[i].id = i+1;
+     }
      const change =  JSON.parse(JSON.stringify(users));
      const index= this.state.done.length +1;
      change[0].id = index;
@@ -43,6 +52,9 @@ class Todo extends Component{
    removeFromDone = (id) =>{
       const member1 =  this.state.done.filter((user) => user.id !== id);
       const users1 =  this.state.done.filter((user) => user.id === id);
+      for(let i = 0;i<member1.length;i++){
+        member1[i].id = i+1;
+      }
       const change1 =  JSON.parse(JSON.stringify(users1));
       const index1= this.state.work.length +1;
       change1[0].id = index1;
