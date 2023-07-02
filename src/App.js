@@ -1,25 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import useChangeTheme from './custumhook/useBackTheme';
 
 function App() {
+  const {theme,toggle} = useChangeTheme()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={theme}>
+      <div>hello world</div>
+      <h1> hi there</h1>
+      <br></br>
+      <button type='button' onClick={toggle}>Toggle</button>
+
     </div>
   );
 }
 
-export default App;
+export default App; 
